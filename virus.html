@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Warning! Virus Detected</title>
+    <style>
+        body {
+            background-color: black;
+            color: red;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 20%;
+        }
+        #countdown {
+            font-size: 50px;
+            font-weight: bold;
+        }
+        #lock-screen {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            color: white;
+            text-align: center;
+            font-size: 30px;
+            padding-top: 40%;
+        }
+    </style>
+    <script>
+        let timeLeft = 10;
+        function countdown() {
+            if (timeLeft <= 0) {
+                document.body.innerHTML = '';
+                document.getElementById('lock-screen').style.display = 'block';
+                playBeep();
+            } else {
+                document.getElementById('countdown').innerText = timeLeft;
+                timeLeft--;
+                playBeep();
+                setTimeout(countdown, 1000);
+            }
+        }
+        function playBeep() {
+            let beep = new Audio('https://www.soundjay.com/button/beep-07.wav');
+            beep.play();
+        }
+        window.onload = countdown;
+    </script>
+</head>
+<body>
+    <h1>⚠️ WARNING: Virus Detected! ⚠️</h1>
+    <p>Your phone will be locked in:</p>
+    <div id="countdown">10</div>
+    <p>Do not close this page!</p>
+    
+    <div id="lock-screen">🔒 Your phone is locked! 🔒<br>Restart to unlock.</div>
+</body>
+</html>
